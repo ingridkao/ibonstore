@@ -1,17 +1,17 @@
-<script setup lang="ts">
+<script setup>
 import { onMounted } from 'vue';
-import { pointStyle, storeHeatmap, storeText } from '@/config/mapStyle.js';
+import { pointStyle, storeHeatmap, storeText } from '../config/mapStyle.js';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 import mapboxgl from 'mapbox-gl';
 import MapboxLanguage from '@mapbox/mapbox-gl-language';
-mapboxgl.accessToken = import.meta.env.VITE_MAPBOXTOKEN
+mapboxgl.accessToken = 'pk.eyJ1IjoiaW5ncmlka2FvIiwiYSI6ImNsbHRpYTI0YTFhcGcza3BlM3hpbnB3NXIifQ.AXv6hON8dGt6AVoXM8n71A'
 
 const initZoom = 6.5
-const locations_center = {
-    taiwan: [120.84583930116798, 23.933726250100563],
-    taipei : [121.54446120453025, 25.026707127465713]
-}
+// const locations_center = {
+//     taiwan: [120.84583930116798, 23.933726250100563],
+//     taipei : [121.54446120453025, 25.026707127465713]
+// }
 const getStoreData = async()=>{
     return fetch('/store_20230801.geojson')
     .then(res=>res.json())
@@ -23,7 +23,7 @@ onMounted(async() => {
     const map = new mapboxgl.Map({
         container: 'mapbox',
         style: 'mapbox://styles/mapbox/dark-v10',
-        center: locations_center.taiwan,
+        center: [120.84583930116798, 23.933726250100563],
         zoom: initZoom,
         minZoom: initZoom,
         maxZoom: 20,

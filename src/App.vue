@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
   import Mapbox from './components/Mapbox.vue';
 </script>
 
@@ -10,7 +10,3 @@
     <Mapbox />
   </main>
 </template>
-
-<style scoped>
-
-</style>
