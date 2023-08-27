@@ -5,7 +5,7 @@ import { pointStyle, storeHeatmap, storeText } from '../config/mapStyle.js';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import mapboxgl from 'mapbox-gl';
 import MapboxLanguage from '@mapbox/mapbox-gl-language';
-mapboxgl.accessToken = 'pk.eyJ1IjoiaW5ncmlka2FvIiwiYSI6ImNsbHRpYTI0YTFhcGcza3BlM3hpbnB3NXIifQ.AXv6hON8dGt6AVoXM8n71A'
+mapboxgl.accessToken = import.meta.env.VITE_MAPBOXTOKEN
 
 const initZoom = 6.5
 // const locations_center = {
@@ -56,10 +56,3 @@ onMounted(async() => {
 <template>
     <div id="mapbox"></div>
 </template>
-
-<style scoped>
-#mapbox{
-    width: 100%;
-    height: 85vh;
-}
-</style>
