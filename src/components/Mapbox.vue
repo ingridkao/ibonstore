@@ -8,13 +8,13 @@ import mapboxgl from 'mapbox-gl';
 import MapboxLanguage from '@mapbox/mapbox-gl-language';
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOXTOKEN
 
-const initZoom = 6
+const initZoom = 7.033
 // const locations_center = {
 //     taiwan: [120.84583930116798, 23.933726250100563],
 //     taipei : [121.54446120453025, 25.026707127465713]
 // }
 const getStoreData = async()=>{
-    return fetch('/store_20230801.geojson')
+    return fetch('/store_20231006.geojson')
     .then(res=>res.json())
     .then(json=>json)
 }
@@ -25,14 +25,14 @@ onMounted(async() => {
     
     mapBoxObj = new mapboxgl.Map({
         container: 'mapbox',
-        style: 'mapbox://styles/mapbox/dark-v10',
-        center: [121.32923392069188, 23.843321850892664],
+        style: 'mapbox://styles/mapbox/light-v10',
+        center: [120.10156754505073,23.663542673161032],
         zoom: initZoom,
-        minZoom: initZoom,
+        minZoom: initZoom-0.5,
         maxZoom: 20,
         // maxBounds: [
-        //     [16.50394970045102, 21.44101301872101], // Southwest coordinates
-        //     [124.40481977850379, 26.794787632746477] // Northeast coordinates
+        //     [117.65352289999197, 21.446710798203327], // Southwest coordinates
+        //     [122.71793936470891, 26.896122097064662] // Northeast coordinates
         // ]
     });
     mapBoxObj.addControl(new MapboxLanguage({
@@ -45,11 +45,11 @@ onMounted(async() => {
         }).addLayer(pointStyle).addLayer(storeHeatmap).addLayer(storeText)
     })
     mapBoxObj.on("click", (event) => {
-        // console.log( mapBoxObj.getBounds())
-        console.log( mapBoxObj.getCenter())
+        console.log( mapBoxObj.getBounds())
+        // console.log( mapBoxObj.getCenter())
         // console.log( mapBoxObj.getBearing())
         // console.log( mapBoxObj.getPitch())
-        // console.log( mapBoxObj.getZoom())
+        console.log( mapBoxObj.getZoom())
         // console.log(JSON.stringify(event.lngLat.wrap()))
     })
 
