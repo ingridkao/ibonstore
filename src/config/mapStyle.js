@@ -11,25 +11,28 @@ export const storeText = {
             "interpolate",
             ["linear"],
             ["zoom"],
-            13.49,0,
-            13.5,14
+            12.99,0,
+            13,14
         ]
     },
     paint: {
         "text-color": "#111",
         "text-opacity": [
-            "interpolate",
-            ["linear"],
+            "step",
             ["zoom"],
-            13.49,
             0,
-            13.5,
-            1
+            13, [
+                'case',
+                ['<', ["to-number",['get', 'count']], 500],
+                0,
+                1
+            ],
+            14,1
         ]
     }
 }
 
-const colors = ['#cacadd', '#7c9cfe', '#6bebeb', '#87ed87', '#efef9a', '#f7a6a6'];
+const colors = ['#c8ffc7', '#4dd4ff','#8292ff'];
 export const pointStyle = {
     id: 'store-point',
     source: 'stores',
@@ -38,42 +41,27 @@ export const pointStyle = {
         'circle-color': [
             'case',
             ['<', ["to-number",['get', 'count']], 500],
-            colors[2],
-            // ['all', ['>=', ["to-number",['get', 'count']], 100], ['<', ["to-number",['get', 'count']], 200]],
-            // colors[2],
-            colors[3]
-            // colors[4]
+            colors[0],
+            ['<', ["to-number",['get', 'count']], 750],
+            colors[1],
+            colors[2]
         ],
         'circle-opacity': [
             "interpolate",
             ["linear"],
             ["zoom"],
-            10.49,
-            0,
-            10.5,
-            0.25,
-            12,
-            0.5
+            12.99, 0.05,
+            13, 0.25,
+            15, 0.4
         ],
         'circle-radius': [
-            "step",
+            "interpolate",
+            ["linear"],
             ["zoom"],
-            0,
-            10,
-            [
-                'case',
-                ['<', ["to-number",['get', 'count']], 50],
-                15,
-                // ["sqrt", ["to-number",['get', 'count']]]
-                ["/", ["to-number",['get', 'count']], 15]
-            ],
-            13,
-            [
-                'case',
-                ['<', ["to-number",['get', 'count']], 50],
-                10,
-                ["/", ["to-number",['get', 'count']], 10]
-            ]
+            6, 5,
+            // 9.99, 5,
+            10, ["sqrt", ["to-number",['get', 'count']]],
+            13, ["/", ["to-number",['get', 'count']], 10]
         ]
     }
 }
@@ -122,3 +110,5 @@ export const storeHeatmap = {
         ]
     }
 }
+
+
